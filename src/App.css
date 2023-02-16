@@ -1,0 +1,150 @@
+:root {
+    --color1: #012970;
+}
+
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}
+
+.n-blue {
+    color: var(--color1);
+}
+
+.nav-right-div {
+    padding: 0 2%;
+    min-width: 30%;
+}
+
+.nav-right-div i {
+    font-size: 22px;
+    margin: 0 8%;
+    position: relative;
+}
+
+.nav-right-div i p {
+    position: absolute;
+    top: -7%;
+    margin: 0px;
+    font-size: 12px;
+    right: -25%;
+    border-radius: 7px;
+    color: white;
+    padding: 0px 6px;
+    font-weight: 500;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.dropdown-menu.show {
+    top: 100%;
+    left: -50% !important;
+}
+
+.profilePic{
+    width: 35px;
+    height: 35px;
+    margin: 0 5%;
+    border-radius: 50%;
+}
+
+.tabdiv{
+    max-width: 90vw;
+    overflow-x: scroll;
+}
+
+.mainIcon{
+    height: 62px;
+    width: 62px;
+    border: none;
+}
+
+.mine-li small{
+font-weight: 500;
+font-size: 15px;
+color: rgb(100, 100, 100);
+}
+.mine-li div{
+    background-color: rgb(219, 219, 219) ;
+}
+
+/* table--Css */
+#exampleTable_filter{
+    display: flex;
+    justify-content: end;
+}
+#exampleTable_filter label{
+    display: flex;
+}
+#exampleTable_filter label input{
+    margin: 0 10px;
+}
+.dataTables_length label{
+    display: flex;
+}
+.dataTables_length label select{
+    max-width: 18%;
+    margin:0 10px ;
+}
+ul.pagination{
+    display:flex;
+    justify-content:end;
+}
+table *,td,th,td span,.dataTables_info,ul.pagination li a{
+    font-size: 14px !important;
+}
+td span{
+    font-size: 11px !important;
+}
+.sliderCount{
+position: absolute;
+bottom: 0;
+}
+.dots{
+    background-color: rgba(255, 255, 255, 0.466);
+    border: 2px solid rgba(0, 0, 0, 0.329);
+}
+.dots.on-screen{
+background-color: rgba(255, 255, 255, 0.664);
+}
+/* Table--css */
+@media only screen and (max-width: 600px) {
+.nav-right-div{
+    margin-left: 0px;
+    min-width: 142px;
+}
+
+.bi-list{
+    font-size: 29px !important;
+}
+.dropdown-menu.show {
+    top: 100%;
+    left: -250% !important;
+}
+.mainBody{
+    position: absolute !important;
+}
+table *,td,th,td span,.dataTables_info,ul.pagination li a{
+    font-size: 10px !important;
+}
+td span{
+    font-size: 8px !important;
+}
+}
+::-webkit-scrollbar {
+    width: 1px;
+  }
+::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  aside{
+    height: 100vh;
+    overflow-y: scroll;
+  }

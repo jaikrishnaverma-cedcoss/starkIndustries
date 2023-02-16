@@ -1,0 +1,46 @@
+:root {
+    --color: rgb(57, 77, 253);
+}
+
+.sideElements {
+    width: 100%;
+    padding: 0% 2% !important;
+}
+
+.accordion-button:focus,
+.accordion-button.active {
+    z-index: 3;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+.accordion-button:hover {
+    background-color: aliceblue;
+    color: var(--color) !important;
+}
+
+.without::after {
+    width: 0px !important;
+}
+
+.accordion-button {
+    color: #012970;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.list-group-item {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.list-group-item:hover {
+    color: var(--color) !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color);
+}
