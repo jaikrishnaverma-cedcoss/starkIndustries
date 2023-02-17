@@ -339,15 +339,15 @@ const Home = () => {
     );
 
   return (
-    <section className="" style={{ height: "100vh", overflowY: "scroll" }}>
-      <button onClick={()=>setFilterVisibility(prev=>!prev)} className="btn btn-warning rounded-capsule d-md-none position-absolute fs-4" 
-      style={{zIndex:'1000',bottom:'7vh',right:'7vw'}}>
-        <i className="bi bi-funnel-fill ">{" "}Filter</i>
-        </button>
-     
+  <>
+    <button onClick={()=>setFilterVisibility(prev=>!prev)} className="btn btn-warning rounded-capsule d-md-none position-absolute fs-4" 
+    style={{zIndex:'1000',bottom:'7vh',right:'7vw'}}>
+      <i className="bi bi-funnel-fill ">{" "}Filter</i>
+      </button>
+    <section className="position-relative" style={{ height: "100vh", overflowY: "scroll" }}>
       <HomeNav setCartShow={setCartShow} searchHandler={searchHandler} />
       <Hero />
-      <div className="container my-5 pt-5">
+      <div className="container-lg my-5 pt-5">
         {/* Uncomment It */}
         <div className="col-12">
           <h1 className="mt-5">Products Page || Admin Panel Dashboard</h1>
@@ -367,7 +367,7 @@ const Home = () => {
         </div>
         <hr ref={gotToDiv} className="p-4 mb-4" id="products-show" />
         <div className="col-12 d-flex ">
-          <div className="col-12 col-md-10 rounded fourth-bg">
+          <div className=" rounded fourth-bg  flex-grow-1">
             <div className="col-12 ms-4 mt-4">
               {products.length == 0 ? (
                 <p className="fs-4 fw-bolder text-danger">No Product Found!</p>
@@ -380,10 +380,10 @@ const Home = () => {
                 </p>
               )}
             </div>
-            <div className="row d-flex flex-wrap row-cols-1 row-cols-md-4 m-2 g-4">
+            <div className="row d-flex flex-wrap  m-2">
               {products.map((x, index) => (
                 <>
-                  <div className="col-6" key={"1_" + x.toString() + index}>
+                  <div className="col-6 col-md-6 col-lg-3 mb-4" key={"1_" + x.toString() + index}>
                     <div className="card h-100 product--card">
                       {Array.isArray(x.images) ? (
                         <SimpleSlider
@@ -402,12 +402,12 @@ const Home = () => {
                       <div className="card-body d-flex flex-column justify-content-between">
                         <div>
                           <h5 className="card-title ">{x.title}</h5>
-                          {/* <p
+                          <p
                             className="card-text text-secondary fw-bolder"
                             style={{ fontSize: "12px" }}
                           >
                             {x.description}
-                          </p> */}
+                          </p>
                         </div>
                         <div
                           className="col-12 fw-bold d-flex flex-column "
@@ -424,26 +424,9 @@ const Home = () => {
                               Rating: {x.rating + " "}
                               <i className="bi bi-star-fill text-warning"></i>{" "}
                             </p>
-
-                            <p className="text-dark fw-bolder fs-4 m-1 pricer">
-                              {x.price}
-                              <i className="bi bi-currency-rupee"></i>
-                            </p>
-                          </div>
-                          <div className="col-12 px-3 py-1 rounded third-bg d-flex justify-content-between align-items-center mt-1">
-                            <button
-                              className="btn fs-5 text-white fw-bold"
-                              onClick={() => addTocart(index, x)}
-                            >
-                              <i className="bi bi-cart-plus-fill me-2"></i>
-                               Add 
-                            </button>
-                            <span className="d-flex align-items-center">
-                              <i
-                                onClick={() => addTocart(index, x, "dec")}
-                                className="bi bi-dash-square text-white  fs-4"
-                              ></i>
-                              <span className="mx-1 fs-5">
+                            <p className="text-success m-0 d-flex align-items-center  fs-6">Quantity: <span className="mx-1 fs-5">
+                              <i onClick={() => addTocart(index, x, "dec")} className="bi bi-dash-square-fill text-dark "></i>
+                              <span className="mx-1 text-danger">
                                 {sessionUserIndex == -1
                                   ? getIndex(guestCart, "id", x.id) !== -1
                                     ? guestCart[getIndex(guestCart, "id", x.id)]
@@ -465,10 +448,20 @@ const Home = () => {
                               </span>
                               <i
                                 onClick={() => addTocart(index, x, "inc")}
-                                className="bi bi-plus-square text-white fs-4"
+                                className="bi bi-plus-square-fill text-dark "
                               ></i>
-                            </span>
+                            </span></p>
+                            <p className="text-dark fw-bolder fs-4 m-1 pricer">
+                              {x.price}
+                              <i className="bi bi-currency-rupee"></i>
+                            </p>
                           </div>
+                          {/* <div className="col-12 px-md-1 px-lg-3 py-1 rounded third-bg d-flex justify-content-between align-items-center mt-1"> */}
+                            <button className="btn btn-primary fs-5 rounded fw-bold" onClick={() => addTocart(index, x)}>
+                               <i className="bi bi-cart-plus-fill me-2 "></i> ADD TO CART
+                            </button>
+                           
+                          {/* </div> */}
                         </div>
                       </div>
                     </div>
@@ -479,7 +472,7 @@ const Home = () => {
           </div>
 
      {/* filterer */}
-          <div className={`${(filterVisiblitiy)?'':'d-none'} d-md-block col-11 col-md-2 ${(!isMobile)?'position-absolute mx-4':''} position-md-static second-bg rounded p-2`} style={{top: '10vh',left: '0'}}>
+          <div className={`col-11 col-lg-2 col-md-3 ${(filterVisiblitiy)?'':'d-none'} d-md-block ${(!isMobile)?'position-absolute mx-4':''} position-md-static second-bg rounded p-2`} style={{top: '10vh',left: '0'}}>
             <h4 className="text-white my-2">
               <i className="bi bi-filter-left me-1"></i>Filter
             </h4>
@@ -612,6 +605,7 @@ const Home = () => {
         <Footer />
       </div>
     </section>
+  </>
   );
 };
 
