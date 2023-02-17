@@ -71,7 +71,7 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
                 </ul>
               </li>
             </ul>
-            <div className="d-flex mx-md-4">
+            <div className="d-flex mx-lg-4">
               <div className="input-group input-group-lg ">
                 <input
                   type="text"
@@ -93,7 +93,7 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
             <ul className="navbar-nav mb-2 mb-lg-0">
             
               <li className="nav-item hover--nav py-1 my-1 px-1" onClick={()=>setCartShow(prev=>!prev)}>
-                <i className="bi bi-cart text-white fs-5 mx-md-4 ">
+                <i className="bi bi-cart text-white fs-5">
                 {"  "}Cart
                 </i>
               </li>

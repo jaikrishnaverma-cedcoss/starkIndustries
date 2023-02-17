@@ -368,9 +368,9 @@ const Home = () => {
         <hr ref={gotToDiv} className="p-4 mb-4" id="products-show" />
         <div className="col-12 d-flex ">
           <div className=" rounded fourth-bg  flex-grow-1">
-            <div className="col-12 ms-4 mt-4">
+            <div className="col-12  ms-4 mt-4">
               {products.length == 0 ? (
-                <p className="fs-4 fw-bolder text-danger">No Product Found!</p>
+                <img src="no-products-removebg-preview.png" className="fs-4 fw-bolder mx-auto w100" alt="No Product Found!"></img>
               ) : (
                 <p className="fs-4 text-success">
                   {products.length} Products{" "}
@@ -383,7 +383,7 @@ const Home = () => {
             <div className="row d-flex flex-wrap  m-2">
               {products.map((x, index) => (
                 <>
-                  <div className="col-6 col-md-6 col-lg-3 mb-4" key={"1_" + x.toString() + index}>
+                  <div className="col-12 col-md-6 col-xl-3 mb-4" key={"1_" + x.toString() + index}>
                     <div className="card h-100 product--card">
                       {Array.isArray(x.images) ? (
                         <SimpleSlider
