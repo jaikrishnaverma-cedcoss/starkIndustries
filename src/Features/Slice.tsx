@@ -33,6 +33,7 @@ const MySlice = createSlice({
     },
     updateProductInCart:(state:any,action)=>{
       state.users[action.payload.userIndex].cart[action.payload.cartIndex].Quantity=action.payload.Quantity;
+      state.users[action.payload.userIndex].cart[action.payload.cartIndex].total=state.users[action.payload.userIndex].cart[action.payload.cartIndex].price*action.payload.Quantity;
     },
     updateProductstock:(state:any,action)=>{
       state.products[action.payload.index].stock=action.payload.stock;

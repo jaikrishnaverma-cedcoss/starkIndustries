@@ -92,12 +92,12 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
            
             <ul className="navbar-nav mb-2 mb-lg-0">
             
-              <li className="nav-item hover--nav py-1" onClick={()=>setCartShow(prev=>!prev)}>
-                <i className="bi bi-cart text-white fs-5 mx-4 ">
+              <li className="nav-item hover--nav py-1 my-1 px-1" onClick={()=>setCartShow(prev=>!prev)}>
+                <i className="bi bi-cart text-white fs-5 mx-md-4 ">
                 {"  "}Cart
                 </i>
               </li>
-              <li className="nav-item dropdown hover--nav">
+              <li className="nav-item dropdown hover--nav px-1">
                 <a
                   className="nav-link dropdown-toggle active py-1"
                   href="#"
@@ -114,7 +114,7 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <a className="dropdown-item" href="#" onClick={()=>navigate('/dashboard')}>
-                    <i className="bi bi-database-dash"></i>{" "} Dashboard
+                    <i className="bi bi-grid"></i>{" "} Dashboard
                     </a>
                   </li>
                   <li>
@@ -131,7 +131,7 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
                     </a>
                   </li>
                   <li  >
-                  <a className="dropdown-item bg-danger text-white" href="#" onClick={()=>dispatch(setSession(''))}>
+                  <a className="dropdown-item bg-danger text-white btn mt-2" href="#" onClick={()=>dispatch(setSession(''))}>
                     <i className="bi bi-box-arrow-in-left"></i>{" "} Log Out  
                     </a>
                   </li>

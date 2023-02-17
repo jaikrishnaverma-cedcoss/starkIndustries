@@ -11,7 +11,7 @@ const DataTables = ({ table, title, subTitle, deletor, counter }: any) => {
   }
   return (
     <div
-      className="d-flex flex-wrap justify-content-center  p-4 "
+      className="d-flex flex-wrap justify-content-center p-1 p-md-4 "
       style={{ minWidth: "70%" }}
     >
       <div className="col-12  mb-2 pe-md-2">
@@ -27,7 +27,7 @@ const DataTables = ({ table, title, subTitle, deletor, counter }: any) => {
               <small className="text-secondary mx-1 fs-6">...</small>
             </div>
           </div>
-          <div className="card-body p-3 pt-0">
+          <div className="card-body pt-0 p-0 p-md-3">
             <div className="w-100">
               <table className="w-100 table my-2" id="exampleTable">
                 <thead>

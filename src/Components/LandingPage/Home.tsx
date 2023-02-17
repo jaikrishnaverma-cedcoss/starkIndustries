@@ -11,12 +11,14 @@ import { cartTypes, dataHubType, productsType } from "../../Types/types";
 import DataTables from "../body/Pages/DataTables";
 import SimpleSlider from "../Extras/SimpleSlider";
 import Footer from "../Footer/Footer";
+import useMediaQuery from "../Hooks/useMediaQuery";
 import Hero from "./Hero";
 import HomeNav from "./HomeNav";
 const Home = () => {
   const dataHub: dataHubType = useSelector((state: dataHubType) => state);
   let [products, setProducts] = useState<productsType[]>(dataHub.products);
   const dispatch = useDispatch();
+  let [filterVisiblitiy,setFilterVisibility]=useState(false)
   // if user is guest user then use this state
   let [guestCart, setGuestCart] = useState<any>([]);
   let [filter, setFilter] = useState<any>({});
@@ -26,6 +28,8 @@ const Home = () => {
   let gotToDiv = useRef<HTMLHRElement>(null);
   let selectSort = useRef<HTMLSelectElement>(null);
   let checkArrow = useRef<HTMLInputElement>(null);
+  const isMobile = useMediaQuery('(min-width: 768px)');
+  console.log('isMobile:',isMobile)
   // set products according to filter
   useEffect(() => {
     let flg = false;
@@ -74,7 +78,6 @@ const Home = () => {
     });
     return filterer(filterKeys, index + 1, tempArr);
   };
-
   //sort according selection
   const sorter = (key: string, asc = true) => {
     let sortedArr: any = products;
@@ -112,7 +115,6 @@ const Home = () => {
     });
     return arr;
   };
-
   //
   const filterHandler = (key: string, val: string) => {
     let currentFilter: any = filter;
@@ -123,7 +125,6 @@ const Home = () => {
     } else currentFilter[key] = [val];
     setFilter({ ...currentFilter });
   };
-
   // Add to Cart for guest and login both
   const addTocart = (index: number, x: productsType, type = "inc") => {
     if (products[index].stock <= 0) return "";
@@ -189,12 +190,12 @@ const Home = () => {
           type == "inc"
             ? guestCart[indexInCart].Quantity + 1
             : guestCart[indexInCart].Quantity - 1;
+        guestCart[indexInCart].total=guestCart[indexInCart].price*guestCart[indexInCart].Quantity;
+            
       }
-
       setGuestCart([...guestCart]);
     }
   };
-
   // search results
   const searchHandler = (str: string) => {
     setTimeout(() => {
@@ -215,7 +216,6 @@ const Home = () => {
       setProducts([...result]);
     }
   };
-
   const billDetails = () => {
     let data =
       sessionUserIndex !== -1
@@ -235,6 +235,8 @@ const Home = () => {
       { name: "Grand Total", value: total },
     ];
   };
+
+  // cart page 
   if (cartShow)
     return (
       <>
@@ -338,6 +340,11 @@ const Home = () => {
 
   return (
     <section className="" style={{ height: "100vh", overflowY: "scroll" }}>
+      <button onClick={()=>setFilterVisibility(prev=>!prev)} className="btn btn-warning rounded-capsule d-md-none position-absolute fs-4" 
+      style={{zIndex:'1000',bottom:'7vh',right:'7vw'}}>
+        <i className="bi bi-funnel-fill ">{" "}Filter</i>
+        </button>
+     
       <HomeNav setCartShow={setCartShow} searchHandler={searchHandler} />
       <Hero />
       <div className="container my-5 pt-5">
@@ -359,8 +366,8 @@ const Home = () => {
           </p>
         </div>
         <hr ref={gotToDiv} className="p-4 mb-4" id="products-show" />
-        <div className="col-12 d-flex">
-          <div className="col-12 col-sm-10 rounded fourth-bg">
+        <div className="col-12 d-flex ">
+          <div className="col-12 col-md-10 rounded fourth-bg">
             <div className="col-12 ms-4 mt-4">
               {products.length == 0 ? (
                 <p className="fs-4 fw-bolder text-danger">No Product Found!</p>
@@ -373,10 +380,10 @@ const Home = () => {
                 </p>
               )}
             </div>
-            <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
+            <div className="row d-flex flex-wrap row-cols-1 row-cols-md-4 m-2 g-4">
               {products.map((x, index) => (
                 <>
-                  <div className="col" key={"1_" + x.toString() + index}>
+                  <div className="col-6" key={"1_" + x.toString() + index}>
                     <div className="card h-100 product--card">
                       {Array.isArray(x.images) ? (
                         <SimpleSlider
@@ -429,7 +436,7 @@ const Home = () => {
                               onClick={() => addTocart(index, x)}
                             >
                               <i className="bi bi-cart-plus-fill me-2"></i>
-                              Buy
+                               Add 
                             </button>
                             <span className="d-flex align-items-center">
                               <i
@@ -471,8 +478,8 @@ const Home = () => {
             </div>
           </div>
 
-          {/* filterer */}
-          <div className="d-none d-sm-block col-2 second-bg rounded p-2">
+     {/* filterer */}
+          <div className={`${(filterVisiblitiy)?'':'d-none'} d-md-block col-11 col-md-2 ${(!isMobile)?'position-absolute mx-4':''} position-md-static second-bg rounded p-2`} style={{top: '10vh',left: '0'}}>
             <h4 className="text-white my-2">
               <i className="bi bi-filter-left me-1"></i>Filter
             </h4>
