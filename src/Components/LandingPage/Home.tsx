@@ -343,6 +343,7 @@ const Home = () => {
     <button onClick={()=>setFilterVisibility(prev=>!prev)} className="btn btn-warning rounded-capsule d-md-none position-absolute fs-4" 
     style={{zIndex:'1000',bottom:'7vh',right:'7vw'}}>
       <i className="bi bi-funnel-fill ">{" "}Filter</i>
+    
       </button>
     <section className="position-relative" style={{ height: "100vh", overflowY: "scroll" }}>
       <HomeNav setCartShow={setCartShow} searchHandler={searchHandler} />
@@ -388,7 +389,7 @@ const Home = () => {
                       {Array.isArray(x.images) ? (
                         <SimpleSlider
                           arr={x.images}
-                          styles={{ maxWidth: "100%", height: "200px" }}
+                          styles={{ maxWidth: "100%",height:'200px'}}
                         />
                       ) : (
                         <img
