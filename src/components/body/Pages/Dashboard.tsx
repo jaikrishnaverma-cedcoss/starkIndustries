@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { dataHubType } from "../../../Types/types";
-import { MyDoughnutChart } from "../assets/MyDoughnutChart";
-import { MyLineChart } from "../assets/MyLineChart";
-import { MyRadarChart } from "../assets/MyRadarChart";
+import { dataHubType } from "../../../types/types";
+import { MyDoughnutChart } from "../chart_js/MyDoughnutChart";
+import { MyLineChart } from "../chart_js/MyLineChart";
+import { MyRadarChart } from "../chart_js/MyRadarChart";
 import { product } from "./Products";
+// in this component a view of static datasets
 const Dashboard = () => {
+  //get redux state
   const dataHub = useSelector((state: dataHubType) => state);
   return (
     <div className="col-12 d-flex flex-wrap justify-content-between">
@@ -140,7 +142,7 @@ const Dashboard = () => {
                 <div className=" ps-1">
                   <h2 className="n-blue">
                     {dataHub.users.reduce((total, data) => {
-                      return data.role == "User" ? total + 1 : total;
+                      return data.role === "User" ? total + 1 : total;
                     }, 0)}
                   </h2>
                   <span className="text-secondary">

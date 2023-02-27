@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { pushData } from "../../../Features/Slice";
-import { dataHubType } from "../../../Types/types";
-import usePrimaryKey from "../../Hooks/usePrimaryKey";
+import usePrimaryKey from "../../../custom_hooks/usePrimaryKey";
+import { pushData } from "../../../features/Slice";
+import { dataHubType } from "../../../types/types";
 
 type MySetting = {
   keyGenerator: (lists: any) => string | undefined;
 };
+// this component can be use dynamically to generate forms=>select,input,radio etc with the help of forms dataset 
 const AddProduct = ({ inputs, objKey }: any) => {
   const [formData, updateFormData] = useState({});
   const [select, setSelect] = useState<boolean>(false);
@@ -70,7 +71,7 @@ const AddProduct = ({ inputs, objKey }: any) => {
           style={{ maxWidth: "700px" }}
         >
           {inputs.map((x: any, i: number) => (
-            <div className="m-1 col-5" style={{ minWidth: "290px" }}>
+            <div key={JSON.stringify(x)+i} className="m-1 col-5" style={{ minWidth: "290px" }}>
               <label htmlFor="exampleInputEmail1" className="form-label">
                 {x.name.replaceAll("_", " ").charAt(0).toUpperCase() +
                   x.name.replaceAll("_", " ").slice(1)}
@@ -139,11 +140,11 @@ const AddProduct = ({ inputs, objKey }: any) => {
               )}
             </div>
           ))}
-        </div>
-        <div className="col-12" style={{ maxWidth: "700px" }}>
-          <button type="submit" className="btn btn-primary my-3  ">
+          <div className="col-12 d-flex justify-content-end" style={{ maxWidth: "700px" }}>
+          <button type="submit" className="btn btn-primary my-3 ms-2 ">
             Submit
           </button>
+        </div>
         </div>
       </form>
     </>

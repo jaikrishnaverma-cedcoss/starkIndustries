@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import LoginSignup from "../AuthComponents/LoginSignup";
-import { deleteFunc, setAll, updateProductstock } from "../Features/Slice";
-import { dataHubType, productsType } from "../Types/types";
+import LoginSignup from "../auth_components/LoginSignup";
+import { deleteFunc, setAll, updateProductstock } from "../features/Slice";
+import { dataHubType } from "../types/types";
 import Body from "./body/Body";
 import AddProduct from "./body/Pages/AddProduct";
 import Dashboard from "./body/Pages/Dashboard";
 import DataTables from "./body/Pages/DataTables";
 import ErrorPage from "./body/Pages/ErrorPage";
-import Home from "./LandingPage/Home";
+import Home from "./landing_pages/Home";
 
 const Main = () => {
   const dataHub: dataHubType = useSelector((state: dataHubType) => state);
@@ -36,10 +36,10 @@ const Main = () => {
 
   const role = dataHub.session ? dataHub.session.role : false;
 
-  console.log("check state=>", dataHub);
+
   return (
     <>
-      <div className="vh-100 ">
+    {/* routes declare here */}
         <ProSidebarProvider>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -128,7 +128,7 @@ const Main = () => {
             </Route>
           </Routes>
         </ProSidebarProvider>
-      </div>
+
     </>
   );
 };

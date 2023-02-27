@@ -7,13 +7,13 @@ const [count,setCount]=useState(0)
 const fill=()=>{
   let x=[]
   for(let i=0; i<arr.length; i++){
-   x.push(<span className={`dots m-1 rounded-circle ${(i===count)?'p-2 on-screen':'p-1'}`}></span>)
+   x.push(<span key={i+x.length.toString()} className={`dots m-1 rounded-circle ${(i===count)?'p-2 on-screen':'p-1'}`}></span>)
   }
   return x
 }
 
   return (
-     <div className="d-flex flex-column align-items-center position-relative" >
+     <div key={arr.toString()} className="d-flex flex-column align-items-center position-relative" >
           <img
             src={(Array.isArray(arr))?arr[count]:arr}
             style={(styles)?styles:{ maxWidth: "80px", maxHeight: "100px"}}

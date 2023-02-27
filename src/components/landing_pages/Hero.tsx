@@ -13,7 +13,7 @@ const Hero = () => {
     useEffect(() => {
       setTimeout(() => {
         typing();
-      }, 500);
+      }, 1000);
     }, []);
   
     const typing = () => {
@@ -31,7 +31,7 @@ const Hero = () => {
   
     const erasing = () => {
       if (charIndex > 0) {
-        if (!cursorSpan.current!.classList.contains("typing"))
+        if (!cursorSpan.current!.classList!.contains("typing"))
           cursorSpan.current!.classList.add("typing");
         span.current!.textContent = textArray[textArrayIndex].substring( 0,charIndex - 1);
         charIndex--;

@@ -1,11 +1,13 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setSession } from "../../Features/Slice";
-import { dataHubType } from "../../Types/types";
+import useIndex from "../../custom_hooks/useUserIndex";
+import { setSession } from "../../features/Slice";
+import { dataHubType } from "../../types/types";
 
-const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateAction<boolean>>,searchHandler:(x:string)=>void}) => {
+const HomeNav = ({setCartShow,searchHandler,carts}:{setCartShow:Dispatch<SetStateAction<boolean>>,searchHandler:(x:string)=>void,carts:number}) => {
   const navigate=useNavigate()
+  let sessionUserIndex = useIndex();
   const dataHub=useSelector((state:dataHubType)=>state)
   const dispatch=useDispatch()
   return (
@@ -28,17 +30,17 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item hover--nav">
+              <li className="nav-item hover--nav px-2 ">
                 <a className="nav-link active" aria-current="page" href="#" onClick={()=>{navigate('/');setCartShow(false)}}>
                   Home
                 </a>
               </li>
-              <li className="nav-item hover--nav">
+              <li className="nav-item hover--nav px-2 ">
                 <a className="nav-link" href="#products-show">
                   Products
                 </a>
               </li>
-              <li className="nav-item dropdown hover--nav">
+              <li className="nav-item dropdown hover--nav px-2 ">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -90,16 +92,17 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
               </div>
             </div>
            
-            <ul className="navbar-nav mb-2 mb-lg-0">
+            <ul className="navbar-nav mb-2 mb-lg-0 ">
             
-              <li className="nav-item hover--nav py-1 my-1 px-1" onClick={()=>setCartShow(prev=>!prev)}>
+              <li className="nav-item hover--nav p-2 my-1 position-relative" onClick={()=>setCartShow(prev=>!prev)}>
                 <i className="bi bi-cart text-white fs-5">
                 {"  "}Cart
                 </i>
+                <span className="cartlength bg-warning">{carts}</span>
               </li>
-              <li className="nav-item dropdown hover--nav px-1">
+              <li className="nav-item dropdown hover--nav p-2 my-1 ">
                 <a
-                  className="nav-link dropdown-toggle active py-1"
+                  className="nav-link dropdown-toggle active py-0"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -111,9 +114,9 @@ const HomeNav = ({setCartShow,searchHandler}:{setCartShow:Dispatch<SetStateActio
                 {"  "}{(dataHub.session)?dataHub.session.name:'Log In'}
               </i>
                 </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown ">
                   <li>
-                    <a className="dropdown-item" href="#" onClick={()=>navigate('/dashboard')}>
+                    <a className={`dropdown-item ${(dataHub.session&&dataHub.session.role.toLowerCase()=='user')&&'disabled'}`} href="#" onClick={()=>!(dataHub.session&&dataHub.session.role.toLowerCase()=='user')&&navigate('/dashboard')}>
                     <i className="bi bi-grid"></i>{" "} Dashboard
                     </a>
                   </li>

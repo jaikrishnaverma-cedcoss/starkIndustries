@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { dataHubType } from '../Types/types';
+import { dataHubType } from '../types/types';
 
 const useIndex = () => {
     const dataHub: dataHubType = useSelector((state: dataHubType) => state);

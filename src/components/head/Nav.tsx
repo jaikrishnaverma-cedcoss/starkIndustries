@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useProSidebar } from 'react-pro-sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { setSession } from '../../Features/Slice';
-import { dataHubType } from '../../Types/types';
+import { useNavigate } from 'react-router-dom';
+import { setSession } from '../../features/Slice';
+import { dataHubType } from '../../types/types';
 type typer={
   collapseSidebar:(collapsed?: boolean | undefined) => void
 }
@@ -23,7 +23,7 @@ if(dataHub.session == "" || (dataHub.session.role!=='Admin' && dataHub.session.r
     <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-white" >
       <div className="container-fluid">
         <a className="navbar-brand me-0 me-sm-2 me-lg-5" href="#" onClick={()=>navigate('/')}>
-          <img src="376-3768060_stark-industries-logo.png" alt="logo" style={{width:'150px'}} className='col-6 col-lg-2' />
+          <img src="376-3768060_stark-industries-logo.png" alt="logo" style={{width:'100px'}} className='col-6 col-lg-2' />
          </a>
         <i onClick={() => collapseSidebar()} className="bi bi-list fs-1 mx-2 mx-sm-3 n-blue"></i>
         <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,11 +42,12 @@ if(dataHub.session == "" || (dataHub.session.role!=='Admin' && dataHub.session.r
               <a className="nav-link dropdown-toggle py-0 n-blue" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://bootstrapmade.com/demo/templates/NiceAdmin/assets/img/profile-img.jpg" className='profilePic' alt="profilepic" /> <span className='d-none d-md-inline'>J. Verma</span>
               </a>
-              <ul className="dropdown-menu mt-3" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item bg-danger text-white" href="#">Log Out</a></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#"><button className="btn btn-danger btn-sm" onClick={()=>localStorage.removeItem("Prd")}>Clear Local Storage</button></a></li>
+              <ul className="dropdown-menu mt-3 position-absolute" aria-labelledby="navbarDropdown">
+                <li><a className="dropdown-item" href="#">{dataHub.session&&dataHub.session.name}</a></li>
+                <li><a className="dropdown-item" href="#">{(dataHub.session!=='')?dataHub.session.role:''} Panel</a></li>
+                <li><a className="dropdown-item" href="#"><button className="btn btn-sm"  onClick={()=>localStorage.removeItem("ecomm")}>Clear Local Storage</button></a></li>
+                <li><a className="dropdown-item" href="#" onClick={()=>dispatch(setSession(''))}><button className="btn btn-danger btn-sm col-12">Log Out</button></a></li>
+               
               </ul>
             </li>
           </ul>

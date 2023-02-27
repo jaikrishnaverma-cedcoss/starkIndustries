@@ -1,10 +1,14 @@
-import { Sidebar } from 'react-pro-sidebar';
+import { Sidebar, useProSidebar } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import './Sidebar.css'
-import useMediaQuery from '../Hooks/useMediaQuery';
+import useMediaQuery from '../../custom_hooks/useMediaQuery';
 import { useSelector } from 'react-redux';
-import { dataHubType } from '../../Types/types';
+import { dataHubType } from '../../types/types';
+type typer={
+  collapseSidebar:(collapsed?: boolean | undefined) => void
+}
 export function SideBar() {
+    const { collapseSidebar }:typer = useProSidebar();
 const navigate=useNavigate()
 const dataHub:dataHubType=useSelector((state:dataHubType) =>state)
 const isMobile = useMediaQuery('(min-width: 600px)');
@@ -14,7 +18,7 @@ const isMobile = useMediaQuery('(min-width: 600px)');
       <div className="accordion accordion-flush px-2 py-1 borderd" id="accordionFlushExample" >
               <div className="accordion-item">
                 <h2 className="accordion-header" id="flush-headingOne">
-                  <button onClick={()=>navigate('/Dashboard')} className="accordion-button active without collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <button onClick={()=>{navigate('/Dashboard');collapseSidebar()}} className="accordion-button active without collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="flush-collapseOne">
                     <i className={`text-secondary bi bi-grid`}></i>
                     <span className='ms-3'>Dashboard</span>
                   </button>
@@ -27,7 +31,7 @@ const isMobile = useMediaQuery('(min-width: 600px)');
             <div className="accordion accordion-flush px-2 py-1 borderd" id="accordionFlushExample">
               <div className="accordion-item">
                 <h2 className="accordion-header" id="flush-headingOne">
-                  <button onClick={()=>navigate(x.ul.replace(' ','_'))} className="accordion-button without collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <button onClick={()=>{navigate(x.ul.replace(' ','_'));collapseSidebar()}} className="accordion-button without collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="flush-collapseOne">
                     <i className={`text-secondary ${x.icons}`}></i>
                     <span className='ms-3'>{x.ul}</span>
                   </button>
